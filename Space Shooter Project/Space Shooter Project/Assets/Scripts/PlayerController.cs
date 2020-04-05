@@ -25,12 +25,15 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip audioData;
     public AudioSource musicSource;
+    
 
 
     private void Start()
      {
           rb = GetComponent<Rigidbody>();
-     }
+
+        
+    }
 
     void Update ()
     {

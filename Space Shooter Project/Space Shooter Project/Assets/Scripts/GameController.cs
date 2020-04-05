@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 
-    public GameObject hazard;
+    public GameObject[] hazards;
     public Vector3 spawnValues;
     public float hazardCount;
     public float spawnWait;
@@ -23,12 +23,17 @@ public class GameController : MonoBehaviour
     public Text restartText;
     public Text gameOverText;
 
+    public Text winText;
+
     void Start()
     {
         gameOver = false;
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
+
+        winText.text = "";
+        
 
         StartCoroutine(SpawnWaves());
         score = 0;
@@ -39,9 +44,9 @@ public class GameController : MonoBehaviour
     {
         if (restart)
         {
-            if (Input.GetKeyDown (KeyCode.R))
+            if (Input.GetKeyDown (KeyCode.F))
             {
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Challenge3");
             }
         }
 
@@ -51,6 +56,8 @@ public class GameController : MonoBehaviour
         }
     }
 
+
+
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
@@ -58,9 +65,11 @@ public class GameController : MonoBehaviour
         {
             for (int i = 0; i < hazardCount; i++)
             {
+                GameObject hazard = hazards [Random.Range (0,hazards.Length )];
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
+                GameObject clone = Instantiate(hazard, spawnPosition, spawnRotation);
+                ReverseDirection(clone);
                 yield return new WaitForSeconds(spawnWait);
             }
 
@@ -68,16 +77,31 @@ public class GameController : MonoBehaviour
             
             if (gameOver)
             {
-                restartText.text = "Press 'R' for Restart";
+                restartText.text = "Press 'F' for Restart";
                 restart = true;
                 break;
             }
         }
     }
 
+    void ReverseDirection (GameObject clone)
+    {
+        clone.transform.rotation.y = 0;
+        clone.GetComponent<Mover>().speed = 5;
+    }
+
     void updateScore()
     {
         scoreText.text = "Score: " + score;
+
+        if (score >= 100)
+        {
+            winText.text = "You Win, Game Created by Justin Diaz";
+            gameOver = false;
+            gameOverText.text = "";
+            restartText.text = "Press 'F' for Restart";
+            restart = true;
+        }
     }
 
     public void addScore(int scoreParam)
