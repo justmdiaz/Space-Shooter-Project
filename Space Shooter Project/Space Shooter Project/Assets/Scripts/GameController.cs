@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 
+    public ParticleSystem particleSystem;
+    public float Endspeed;
+
     public GameObject[] hazards;
     public Vector3 spawnValues;
     public float hazardCount;
@@ -17,13 +20,34 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public int score;
 
-    private bool gameOver;
+    public bool gameOver;
     private bool restart;
+    private bool Ultimate;
+
 
     public Text restartText;
     public Text gameOverText;
 
     public Text winText;
+
+    
+    
+    public float nextFire;
+
+    public GameObject UltimateShot;
+
+    public Transform ShotSpawn;
+
+    public Text UltimateText;
+    public float fireRate;
+    public AudioSource MusicPlayer;
+    public AudioClip loseSound;
+    public AudioClip winSound;
+    
+
+
+
+
 
     void Start()
     {
@@ -31,17 +55,51 @@ public class GameController : MonoBehaviour
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
+        
+        UltimateText.text = "";
+
 
         winText.text = "";
+        
         
 
         StartCoroutine(SpawnWaves());
         score = 0;
         updateScore();
+
+
+
+
+        
     }
 
     void Update ()
     {
+        if (Ultimate == true)
+        {
+            if (Input.GetButton("Fire2") && Time.time > nextFire)
+            {
+                StartCoroutine(UltimateTimer());
+
+                nextFire = Time.time + fireRate;
+                Instantiate(UltimateShot, ShotSpawn.position, ShotSpawn.rotation);
+
+            }
+        }
+
+
+            if (score >= 50)
+        {
+            UltimateText.text = "Press Shift To Trigger Ultimate";
+            Ultimate = true;
+        }
+
+        if (gameOver == true)
+        {
+            UltimateText.text = "";
+            particleSystem.GetComponent<ParticleSystem>().playbackSpeed = Endspeed;
+        }
+
         if (restart)
         {
             if (Input.GetKeyDown (KeyCode.F))
@@ -54,8 +112,15 @@ public class GameController : MonoBehaviour
         {
             Application.Quit();
         }
+        
     }
+    IEnumerator UltimateTimer()
+    {
+        yield return new WaitForSeconds(1);
 
+
+        Ultimate = false;
+    }
 
 
     IEnumerator SpawnWaves()
@@ -69,7 +134,7 @@ public class GameController : MonoBehaviour
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 GameObject clone = Instantiate(hazard, spawnPosition, spawnRotation);
-                ReverseDirection(clone);
+                
                 yield return new WaitForSeconds(spawnWait);
             }
 
@@ -79,21 +144,20 @@ public class GameController : MonoBehaviour
             {
                 restartText.text = "Press 'F' for Restart";
                 restart = true;
+                winText.text = "";
                 break;
+
             }
         }
     }
 
-    void ReverseDirection (GameObject clone)
-    {
-        clone.transform.rotation.y = 0;
-        clone.GetComponent<Mover>().speed = 5;
-    }
+   
 
-    void updateScore()
+
+    public void updateScore()
     {
         scoreText.text = "Score: " + score;
-
+        
         if (score >= 100)
         {
             winText.text = "You Win, Game Created by Justin Diaz";
@@ -101,19 +165,29 @@ public class GameController : MonoBehaviour
             gameOverText.text = "";
             restartText.text = "Press 'F' for Restart";
             restart = true;
+            particleSystem.GetComponent<ParticleSystem>().playbackSpeed = Endspeed;
+            MusicPlayer.clip = winSound;
+            MusicPlayer.Play();
         }
+       
+
+
+
     }
 
     public void addScore(int scoreParam)
     {
         score += scoreParam;
         updateScore();
+        
     }
 
     public void GameOver ()
     {
         gameOverText.text = "Game Over!";
         gameOver = true;
-
+        UltimateText.text = "";
+        MusicPlayer.clip = loseSound;
+        MusicPlayer.Play();
     }
 }

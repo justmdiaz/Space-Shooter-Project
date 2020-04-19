@@ -91,10 +91,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 711, y: 472}
-  m_MaxSize: {x: 18006, y: 14022}
+  m_MinSize: {x: 709, y: 472}
+  m_MaxSize: {x: 18004, y: 14022}
   vertical: 0
-  controlID: 115
+  controlID: 113
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 472}
   m_MaxSize: {x: 10004, y: 14022}
   vertical: 1
-  controlID: 53
+  controlID: 51
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -397,12 +397,12 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewResizer:
-    m_CachedPref: -147
+    m_CachedPref: 147
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 100
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -441,12 +441,13 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Audio
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\User\Documents\GitHub\Challenge 3\Space Shooter Project\Space
+  m_LastProjectPath: C:\Users\User\Documents\GitHub\Final_Boss\Space Shooter Project\Space
     Shooter Project
   m_LockTracker:
     m_IsLocked: 0
@@ -454,7 +455,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 902e0000
     m_LastClickedID: 11920
-    m_ExpandedIDs: 00000000f22c0000622d0000822d00008c2d0000d42d00005e2e0000a42f0000c82f0000
+    m_ExpandedIDs: 00000000042d0000a02d0000f22d0000822e0000bc2e0000ce2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -479,21 +480,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 319}
+    scrollPos: {x: 0, y: 0.49987793}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000f22c0000622d0000822d00008c2d0000d42d00005e2e0000a42f0000c82f0000
+    m_ExpandedIDs: ffffffff00000000042d0000a02d0000f22d0000822e0000bc2e0000ce2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Enemy Bolt
-      m_OriginalName: Enemy Bolt
+      m_Name: lose_sound
+      m_OriginalName: lose_sound
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 19256
+      m_UserData: 13268
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -655,9 +656,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 7.171}
+    m_Target: {x: 239.5119, y: 38.816177, z: 18.728067}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 7.171}
+    m_Value: {x: 239.5119, y: 38.816177, z: 18.728067}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -686,13 +687,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.29626012, y: -0.5730994, z: 0.23336722, w: 0.7275536}
+    m_Target: {x: -0.03479447, y: 0.0053967824, z: 0.00019058428, w: 0.99938273}
     speed: 2
-    m_Value: {x: 0.29625902, y: -0.5730972, z: 0.23336636, w: 0.7275509}
+    m_Value: {x: -0.03479437, y: 0.0053967675, z: 0.00019058376, w: 0.99938}
   m_Size:
-    m_Target: 8.9355545
+    m_Target: 754.38574
     speed: 2
-    m_Value: 8.9355545
+    m_Value: 754.38574
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -749,7 +750,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c85bfffffa5bffffae5cffff76fbffff9c310000
+      m_ExpandedIDs: 3048ffffd448ffff0649ffffbc49ffff76fbffff34310000b0310000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
